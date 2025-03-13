@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmv4ypyhw2vtu"]
+
+[ext_resource type="Script" uid="uid://drhls00s2qous" path="res://_scripts/ui/DeckUi.gd" id="1_mww4s"]
+[ext_resource type="Texture2D" uid="uid://difh2v1o8b6ip" path="res://assets/back.png" id="2_1efqa"]
+
+[node name="Deck" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mww4s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_1efqa")

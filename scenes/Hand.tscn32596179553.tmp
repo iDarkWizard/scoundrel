@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc1lrbhfji1u3"]
+
+[ext_resource type="Script" uid="uid://c7b4b6mb2ah04" path="res://scenes/scripts/HandUi.gd" id="1_vchyo"]
+[ext_resource type="PackedScene" uid="uid://cdv5o53a60j7a" path="res://scenes/Card.tscn" id="2_co447"]
+
+[node name="Hand" type="Node2D"]
+script = ExtResource("1_vchyo")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Card" parent="HBoxContainer" instance=ExtResource("2_co447")]
+layout_mode = 2

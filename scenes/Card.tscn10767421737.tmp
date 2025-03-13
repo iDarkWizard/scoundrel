@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdv5o53a60j7a"]
+
+[ext_resource type="Script" uid="uid://cn433x4krlvb3" path="res://scenes/scripts/CardUi.gd" id="1_kikvd"]
+[ext_resource type="Texture2D" uid="uid://c5u6brbmn3upu" path="res://assets/dorso_carta.png" id="2_rjlel"]
+
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 430.0
+offset_top = 132.0
+offset_right = -421.0
+offset_bottom = -238.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kikvd")
+
+[node name="CardImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -430.0
+offset_top = -132.0
+offset_right = -134.0
+offset_bottom = 84.0
+texture = ExtResource("2_rjlel")
+expand_mode = 3
+
+[node name="Text" type="Label" parent="CardImage"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 233.0
+offset_right = 214.0
+offset_bottom = 256.0
+text = "As de Diamantes"

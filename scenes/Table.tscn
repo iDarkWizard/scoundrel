@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpj388cstkcvj"]
+
+[ext_resource type="Script" uid="uid://copjgifuuyksx" path="res://_scripts/ui/TableUi.gd" id="1_xa0as"]
+[ext_resource type="PackedScene" uid="uid://bmv4ypyhw2vtu" path="res://scenes/Deck.tscn" id="2_so1t7"]
+[ext_resource type="PackedScene" uid="uid://cc1lrbhfji1u3" path="res://scenes/Hand.tscn" id="3_1euqw"]
+
+[node name="Table" type="Node2D"]
+script = ExtResource("1_xa0as")
+
+[node name="Hand" parent="." instance=ExtResource("3_1euqw")]
+position = Vector2(256, 8)
+
+[node name="Deck" parent="." instance=ExtResource("2_so1t7")]
+position = Vector2(8, 8)
+
+[node name="ActionButton" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 384.0
+offset_right = 256.0
+offset_bottom = 448.0
+
+[node name="RunButton" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 464.0
+offset_right = 256.0
+offset_bottom = 528.0
+
+[node name="DrawButton" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 544.0
+offset_right = 256.0
+offset_bottom = 608.0
