@@ -1,10 +1,10 @@
 extends Node2D
 
-@onready var deck = $Deck
-@onready var hand = $Hand
-@onready var action_button: Button = $ActionButton
-@onready var run_button: Button = $RunButton
-@onready var draw_button: Button = $DrawButton
+@onready var deck = $UI/DeckUI
+@onready var hand = $UI/HandUI
+@onready var action_button: Button = $Buttons/ActionButton
+@onready var run_button: Button = $Buttons/RunButton
+@onready var draw_button: Button = $Buttons/DrawButton
 
 var runs_left = 0
 var player : Node
@@ -12,7 +12,18 @@ var player : Node
 func _ready():
 	print("[Table] Abriendo mesa")
 	player = get_node("Player")
-	print("Vida del jugador: " + str(player.health))
+	print("[Table] Vida del jugador: " + str(player.health))
+
+	if not deck:
+		print("[Table] deck is null")
+	else:
+		print("[Table] Deck: ", deck)
+	
+	if hand:
+		hand.connect("hand_card_selected", Callable(self, "_on_hand_card_selected"))	
+	else:
+		print("[Table] hand is null")
+
 	deal_cards_to_hand(4)
 	action_button.disabled = true
 	action_button.text = "Selecciona una carta"
@@ -33,9 +44,11 @@ func deal_cards_to_hand(amount):
 	print("[Table] Repartiendo cartas")
 	var cards = deck.draw_cards(amount)
 	runs_left -= 1
+	print("[Table] Sending cards: ", cards)
 	hand.receive_cards(cards)
 
 func _on_hand_card_selected(selected_card: CardUi):
+	print("[TableUi] hand_card_Selected: ", selected_card)
 	action_button.disabled = false
 	match selected_card.card.suit:
 		"hearts":

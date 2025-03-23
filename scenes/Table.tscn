@@ -1,31 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpj388cstkcvj"]
+[gd_scene load_steps=6 format=3 uid="uid://dpj388cstkcvj"]
 
 [ext_resource type="Script" uid="uid://copjgifuuyksx" path="res://_scripts/ui/TableUi.gd" id="1_xa0as"]
 [ext_resource type="PackedScene" uid="uid://bmv4ypyhw2vtu" path="res://scenes/Deck.tscn" id="2_so1t7"]
 [ext_resource type="PackedScene" uid="uid://cc1lrbhfji1u3" path="res://scenes/Hand.tscn" id="3_1euqw"]
+[ext_resource type="Script" uid="uid://dev0cy1rujtgv" path="res://_scripts/controller/DeckController.gd" id="4_7e6ia"]
+[ext_resource type="Script" uid="uid://d1vpcnvf6tgpr" path="res://_scripts/controller/CardController.gd" id="5_7q8ky"]
 
 [node name="Table" type="Node2D"]
 script = ExtResource("1_xa0as")
 
-[node name="Hand" parent="." instance=ExtResource("3_1euqw")]
-position = Vector2(256, 8)
+[node name="UI" type="Node" parent="."]
 
-[node name="Deck" parent="." instance=ExtResource("2_so1t7")]
-position = Vector2(8, 8)
+[node name="HandUI" parent="UI" instance=ExtResource("3_1euqw")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 256.0
+offset_top = 8.0
+offset_right = 256.0
+offset_bottom = 8.0
 
-[node name="ActionButton" type="Button" parent="."]
+[node name="DeckUI" parent="UI" instance=ExtResource("2_so1t7")]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Controllers" type="Node" parent="."]
+
+[node name="DeckController" type="Node" parent="Controllers"]
+script = ExtResource("4_7e6ia")
+metadata/_custom_type_script = "uid://dev0cy1rujtgv"
+
+[node name="Cardcontroller" type="Node" parent="Controllers"]
+script = ExtResource("5_7q8ky")
+metadata/_custom_type_script = "uid://d1vpcnvf6tgpr"
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="ActionButton" type="Button" parent="Buttons"]
 offset_left = 64.0
 offset_top = 384.0
 offset_right = 256.0
 offset_bottom = 448.0
 
-[node name="RunButton" type="Button" parent="."]
+[node name="RunButton" type="Button" parent="Buttons"]
 offset_left = 64.0
 offset_top = 464.0
 offset_right = 256.0
 offset_bottom = 528.0
 
-[node name="DrawButton" type="Button" parent="."]
+[node name="DrawButton" type="Button" parent="Buttons"]
 offset_left = 64.0
 offset_top = 544.0
 offset_right = 256.0

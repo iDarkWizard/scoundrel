@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://c7b4b6mb2ah04" path="res://_scripts/ui/HandUi.gd" id="1_vchyo"]
 [ext_resource type="PackedScene" uid="uid://cdv5o53a60j7a" path="res://scenes/Card.tscn" id="2_co447"]
 
-[node name="Hand" type="Node2D"]
+[node name="Hand" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_vchyo")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 

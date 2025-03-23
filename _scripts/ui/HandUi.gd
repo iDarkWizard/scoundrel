@@ -1,6 +1,7 @@
-extends Node2D
+extends CardDisplay
+class_name HandUi
 
-signal hand_card_selected(card)
+signal hand_card_selected(selected_card)
 
 @onready var card_container = $HBoxContainer
 var table: Node
@@ -18,23 +19,28 @@ func _ready():
 	else:
 		print("⚠️ No se encontró TableUi como padre")
 
-func receive_cards(cards):
-	for card in cards:
+func receive_cards(received_cards):
+	if not receive_cards:
+		print("[HandUi] Received null cards")
+	for received_card in received_cards:
+		print("[HandUi] received card: ", received_card)
 		var card_scene = preload("res://scenes/Card.tscn")
 		var card_ui = card_scene.instantiate()
-		var texture_rect = card_ui.get_node("CardImage") as TextureRect
-		if texture_rect:
-			texture_rect.texture = card.image
-		card_ui.card = card
+		var card_texture_rect = card_ui.get_node("CardImage") as TextureRect
+		if card_texture_rect:
+			card_texture_rect.texture = received_card.image
+		card_ui.card = received_card
 		card_ui.connect("card_selected", Callable(self, "_on_card_selected"))
 		card_container.add_child(card_ui)
 	print("[Hand] Hijos en HBoxContainer después de agregar cartas: ", card_container.get_child_count())
 
-func _on_card_selected(selected_card: CardUi):
-	if selected_card != self.selected_card:
+func _on_card_selected(received_card: CardUi):
+	print("[HandUi] Selecting card")
+	if received_card != self.selected_card:
 		if self.selected_card:
 			self.selected_card.deselect_card()
-		self.selected_card = selected_card
+		self.selected_card = received_card
+		print("[HandUi] emmiting signal for card: ", selected_card.card.name)
 		emit_signal("hand_card_selected", selected_card)
 
 func can_redraw():
@@ -53,8 +59,7 @@ func get_cards():
 	var cards_to_return : Array = []
 
 	for card_ui in card_container.get_children():
-		var card = card_ui.card
-		cards_to_return.append(card)
+		cards_to_return.append(card_ui.card)
 		card_ui.queue_free()
-		print("Carta: ", card)
+		print("Carta: ", card_ui.card)
 	return cards_to_return

@@ -8,9 +8,11 @@ var deck: Array = []
 var deck_back_image = preload("res://assets/back.png")
 
 func _ready():
+	print("[Deck] Starting deck")
 	init_deck()
 
 func init_deck():
+	print("[Deck] Init deck loading")
 	var suits = ["spades", "hearts", "clubs", "diamonds"]
 	for suit_index in range(4):
 		for card_number in range(1, 14):
@@ -24,7 +26,10 @@ func init_deck():
 				continue
 
 			deck.append(card)
+	print("[Deck] Deck loaded")
 	deck.shuffle()
+	print("[Deck] Deck shuffled")
+
 
 func draw_cards(amount) -> Array:
 	var drawn_cards = []
@@ -33,10 +38,10 @@ func draw_cards(amount) -> Array:
 		drawn_cards.append(card)
 		print("[Deck] Carta tomada:", card.name)
 
-	print("Cartas faltantes:", deck.size())
+	print("[Deck] Cartas faltantes:", deck.size())
 
 	emit_signal("deck_updated", drawn_cards)
-
+	print("[Deck] DrawnCards: ", drawn_cards)
 	return drawn_cards
 
 func add_cards(cards: Array):
